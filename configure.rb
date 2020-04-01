@@ -65,6 +65,15 @@ node[:deploy].each do |application, _|
       action      :create
       recursive   true
     end
+	  
+  ['log','config','system','pids','scripts','sockets'].each do |dir_name|
+    directory "#{node[:deploy][application][:deploy_to]}/shared/#{dir_name}" do
+      group       node[:deploy][application][:group]
+      owner       node[:deploy][application][:user]
+      mode        0770
+      action      :create
+      recursive   true
+    end
   end
 
 end
