@@ -158,6 +158,15 @@ if node[:deploy][application][:scm]
     mode      0644
     variables( :log_dirs => ["#{node[:deploy][application][:deploy_to]}/shared/log" ] )
   end
+   template "/etc/logrotate.d/opsworks_app_#{application}" do
+    backup    false
+    source    "logrotate.erb"
+    cookbook  'deploy'
+    owner     "root"
+    group     "root"
+    mode      0644
+    variables( :log_dirs => ["#{node[:deploy][application][:deploy_to]}/shared/log" ] )
+  end
   
   execute "restart app #{application}" do
     cwd       node[:deploy][application][:current_path]
