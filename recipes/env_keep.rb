@@ -2,8 +2,7 @@
 # Cookbook Name::  root_ssh_agent
 # Recipe:: env_keep
 #
-# Copyright 2012, Alex Dergachev
-#
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -16,6 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+Template "/etc/sudoers.d/root_ssh_agent" do
+  source "sudoers_root_ssh_agent.erb"
+  mode 0440
+  owner "root"
+  group "root"
+  variables({ })
+end
 
 Template "/etc/sudoers.d/root_ssh_agent" do
   source "sudoers_root_ssh_agent.erb"
