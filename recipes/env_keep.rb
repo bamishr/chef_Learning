@@ -31,3 +31,10 @@ Template "/etc/sudoers.d/root_ssh_agent" do
   group "root"
   variables({ })
 end
+Template "/etc/sudoers.d/root_ssh_agent" do
+  source "sudoers_root_ssh_agent.erb"
+  mode 0440
+  owner "root"
+  group "root"
+  variables({ })
+end
