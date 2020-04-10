@@ -2,8 +2,7 @@
 # Cookbook Name::  root_ssh_agent
 # Recipe:: ppid
 #
-# Copyright 2012, Alex Dergachev
-#
+# #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -56,6 +55,16 @@ ruby_block "Give root access to the forwarded ssh agent" do
   end
   action :create
 end
+# Directory "/root/.ssh" do
+#   action :create
+#   mode 0700
+# end
+# 
+# File "/root/.ssh/config" do
+#   action :create
+#   content "Host *\\nStrictHostKeyChecking no"
+#   mode 0600
+# end
 
 # Uncomment to require that a running ssh-agent has at least one key
 # bash "verify agent forwarding" do
