@@ -23,6 +23,14 @@ node[:deploy].each do |application, _|
     home      node[:deploy][application][:home]
     supports  :manage_home => true
     shell     node[:deploy][application][:shell]
+    user node[:deploy][application][:user] do
+    action    :create
+    comment   "deploy user"
+    uid       next_free_uid
+    gid       node[:deploy][application][:group]
+    home      node[:deploy][application][:home]
+    supports  :manage_home => true
+    shell     node[:deploy][application][:shell]
     
     not_if do
       existing_usernames = []
