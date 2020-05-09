@@ -14,3 +14,12 @@ node['rabbitmq']['enabled_users'].each do |user|
     tag user['tag']
     action :set_tags
   end
+user['rights'].each do |r|
+    rabbitmq_user "set-perms-#{user['name']}-vhost-#{Array(r['vhost']).join().tr('/', '_')}" do
+      user user['name']
+      vhost r['vhost']
+      permissions "#{r['conf']} #{r['write']} #{r['read']}"
+      action :set_permissions
+    end
+  end
+end
