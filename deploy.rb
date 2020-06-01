@@ -42,3 +42,16 @@ if node[:deploy][application][:scm]
       }
     end
   end
+  Chef::Log.debug("Checking out source code of application #{application} with type #{node[:deploy][application][:application_type]}")
+
+  directory "#{node[:deploy][application][:deploy_to]}/shared/cached-copy" do
+    recursive   true
+    action      :delete
+    only_if     { node[:deploy][application][:delete_cached_copy] }
+  end
+
+  ruby_block "change HOME to #{node[:deploy][application][:home]} for source checkout" do
+    block do
+      ENV['HOME'] = "#{node[:deploy][application][:home]}"
+    end
+  end
