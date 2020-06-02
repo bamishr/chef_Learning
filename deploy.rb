@@ -55,3 +55,21 @@ if node[:deploy][application][:scm]
       ENV['HOME'] = "#{node[:deploy][application][:home]}"
     end
   end
+    Chef::Log.debug("[sinatra] Running 'deploy' operation and will restart with `echo 'sinatra restart' && sleep #{node[:deploy][application][:sleep_before_restart]} && #{node[:sinatra][application][:restart_command]}`")
+
+  # setup deployment & checkout
+  if node[:deploy][application][:scm]
+    deploy node[:deploy][application][:deploy_to] do
+      repository              node[:deploy][application][:scm][:repository]
+      user                    node[:deploy][application][:user]
+      revision                node[:deploy][application][:scm][:revision]
+      migrate                 node[:deploy][application][:migrate]
+      migration_command       node[:deploy][application][:migrate_command]
+      environment             node[:deploy][application][:environment]
+      symlink_before_migrate( node[:deploy][application][:symlink_before_migrate] )
+      action                  node[:deploy][application][:action]
+
+      # This is buggy with this version of chef, so we'll duplicate a little and manually call restart below (L156)
+      # if node[:sinatra][application][:restart_command]
+      #   restart_command       "echo 'sinatra restart' && sleep #{node[:deploy][application][:sleep_before_restart]} && #{node[:sinatra][application][:restart_command]}"
+      # end
