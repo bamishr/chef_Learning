@@ -73,3 +73,17 @@ if node[:deploy][application][:scm]
       # if node[:sinatra][application][:restart_command]
       #   restart_command       "echo 'sinatra restart' && sleep #{node[:deploy][application][:sleep_before_restart]} && #{node[:sinatra][application][:restart_command]}"
       # end
+	    case node[:deploy][application][:scm][:scm_type].to_s
+      when 'git'
+        scm_provider          :git
+        enable_submodules     node[:deploy][application][:enable_submodules]
+        shallow_clone         node[:deploy][application][:shallow_clone]
+      when 'svn'
+        scm_provider          :subversion
+        svn_username          node[:deploy][application][:scm][:user]
+        svn_password          node[:deploy][application][:scm][:password]
+        svn_arguments         "--no-auth-cache --non-interactive --trust-server-cert"
+        svn_info_args         "--no-auth-cache --non-interactive --trust-server-cert"
+      else
+        raise "unsupported SCM type #{node[:deploy][application][:scm][:scm_type].inspect}"
+      end
