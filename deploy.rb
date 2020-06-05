@@ -87,3 +87,17 @@ if node[:deploy][application][:scm]
       else
         raise "unsupported SCM type #{node[:deploy][application][:scm][:scm_type].inspect}"
       end
+	    before_symlink do
+        if node[:deploy][application][:auto_bundle_on_deploy]
+          Chef::Log.info("Sinatra Gemfile detected. Running bundle install.")
+          Chef::Log.info("sudo su deploy -c 'cd #{release_path} && #{node[:sinatra][application][:bundle_command]} install --path #{node[:deploy][application][:home]}/.bundler/#{application} --without=#{node[:deploy][application][:ignore_bundler_groups].join(' ')}'")
+          
+          bash "sinatra bundle install #{application}" do
+            cwd release_path
+            code <<-EOH
+              sudo -u deploy #{node[:sinatra][application][:bundle_command]} install --path #{node[:deploy][application][:home]}/.bundler/#{application} --without=#{node[:deploy][application][:ignore_bundler_groups].join(' ')}
+            EOH
+            action :run
+          end
+        end
+      end
