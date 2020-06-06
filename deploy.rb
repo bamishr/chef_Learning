@@ -101,3 +101,17 @@ if node[:deploy][application][:scm]
           end
         end
       end
+	     before_migrate do
+        link_tempfiles_to_current_release
+        # additionally run any user-provided callback file
+        run_callback_from_file("#{release_path}/deploy/before_migrate.rb")
+      end
+    end
+  end
+
+  ruby_block "change HOME back to /root after source checkout" do
+    block do
+      ENV['HOME'] = "/root"
+    end
+  end
+  
