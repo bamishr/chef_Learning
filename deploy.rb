@@ -115,3 +115,17 @@ if node[:deploy][application][:scm]
     end
   end
   
+   if node[:deploy][application][:application_type] == 'sinatra' # && node[:opsworks][:instance][:layers].include?('rails-app')
+    case node[:opsworks][:rack_stack][:name]
+  
+    when 'apache_passenger'
+      passenger_web_app do
+        application   application
+        deploy        node[:deploy][application]
+      end
+  
+    when 'nginx_unicorn'
+      unicorn_web_app do
+        application   application
+        deploy        node[:deploy][application]
+      end
