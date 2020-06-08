@@ -129,3 +129,24 @@ if node[:deploy][application][:scm]
         application   application
         deploy        node[:deploy][application]
       end
+	     else
+      raise "Unsupported Rack Stack #{node[:opsworks][:rack_stack][:name]}"
+    end
+  end
+  
+  template "/etc/logrotate.d/opsworks_app_#{application}" do
+    backup    false
+    source    "logrotate.erb"
+    cookbook  'deploy'
+    owner     "root"
+    group     "root"
+    mode      0644
+    variables( :log_dirs => ["#{node[:deploy][application][:deploy_to]}/shared/log" ] )
+  end
+  
+  execute "restart app #{application}" do
+    cwd       node[:deploy][application][:current_path]
+    command   node[:opsworks][:rack_stack][:restart_command]
+    action    :run
+  end
+end
