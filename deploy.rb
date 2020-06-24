@@ -9,3 +9,13 @@ node[:deploy].each do |application, _|
     action      :create
     recursive   true
   end
+if node[:deploy][application][:scm]
+    ensure_scm_package_installed(node[:deploy][application][:scm][:scm_type])
+    
+    if node[:deploy][application][:scm][:scm_type].to_s == 'git'
+      prepare_git_checkouts(
+        :user =>    node[:deploy][application][:user],
+        :group =>   node[:deploy][application][:group],
+        :home =>    node[:deploy][application][:home],
+        :ssh_key => node[:deploy][application][:scm][:ssh_key]
+      ) 
