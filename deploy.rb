@@ -19,3 +19,11 @@ if node[:deploy][application][:scm]
         :home =>    node[:deploy][application][:home],
         :ssh_key => node[:deploy][application][:scm][:ssh_key]
       ) 
+	   elsif node[:deploy][application][:scm][:scm_type].to_s == 'svn'
+      prepare_svn_checkouts(
+        :user =>        node[:deploy][application][:user],
+        :group =>       node[:deploy][application][:group],
+        :home =>        node[:deploy][application][:home],
+        :deploy =>      node[:deploy],
+        :application => application
+      ) 
