@@ -27,3 +27,18 @@ if node[:deploy][application][:scm]
         :deploy =>      node[:deploy],
         :application => application
       ) 
+	    elsif node[:deploy][application][:scm][:scm_type].to_s == 'archive'
+      repository = prepare_archive_checkouts(node[:deploy][application][:scm])
+      node[:deploy][application][:scm] = {
+        :scm_type =>    'git',
+        :repository =>  repository
+      }
+    
+    elsif node[:deploy][application][:scm][:scm_type].to_s == 's3'
+      repository = prepare_s3_checkouts(node[:deploy][application][:scm])
+      node[:deploy][application][:scm] = {
+        :scm_type =>    'git',
+        :repository =>  repository
+      }
+    end
+  end
