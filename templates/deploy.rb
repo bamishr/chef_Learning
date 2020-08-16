@@ -21,4 +21,33 @@ node['rabbitmq']['disabled_virtualhosts'].each do |virtualhost|
     action :delete
   end
 end
+node['rabbitmq']['virtualhosts'].each do |virtualhost|
+  rabbitmq_vhost virtualhost do
+    action :add
+  end
+end
+
+node['rabbitmq']['disabled_virtualhosts'].each do |virtualhost|
+  rabbitmq_vhost virtualhost do
+    action :delete
+  end
+end
+end
+
+node['rabbitmq']['disabled_virtualhosts'].each do |virtualhost|
+  rabbitmq_vhost virtualhost do
+    action :delete
+  end
+end
+node['rabbitmq']['virtualhosts'].each do |virtualhost|
+  rabbitmq_vhost virtualhost do
+    action :add
+  end
+end
+
+node['rabbitmq']['disabled_virtualhosts'].each do |virtualhost|
+  rabbitmq_vhost virtualhost do
+    action :delete
+  end
+end
   
