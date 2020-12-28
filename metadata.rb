@@ -29,3 +29,27 @@ supports "debian"
 supports "mac_os_x"
 supports "openbsd"
 supports "suse"
+supports "ubuntu"
+supports "debian"
+supports "mac_os_x"
+supports "openbsd"
+supports "suse"
+
+
+recipe "root_ssh_agent::env_keep", 'Adds \'Defaults env_keep += "SSH_AUTH_SOCK"\' to /etc/sudoers.d/ssh_env_keep.'
+supports "ubuntu"
+supports "debian"
+supports "mac_os_x"
+supports "openbsd"
+supports "suse"
+
+
+recipe "root_ssh_agent::env_keep", 'Adds \'Defaults env_keep += "SSH_AUTH_SOCK"\' to /etc/sudoers.d/ssh_env_keep.'
+supports "ubuntu"
+supports "debian"
+supports "mac_os_x"
+supports "openbsd"
+supports "suse"
+
+
+recipe "root_ssh_agent::env_keep", 'Adds \'Defaults env_keep += "SSH_AUTH_SOCK"\' to /etc/sudoers.d/ssh_env_keep.'

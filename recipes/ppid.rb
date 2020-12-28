@@ -76,6 +76,14 @@ ruby_block "Give root access to the forwarded ssh agent" do
       File.open("/proc/#{ppid}/status", "r") do |file|
         ppid = file.read().match(/PPid:\s+(\d+)/)[1]
       end
+	  while ppid != '1'
+      if (agent = agents[ppid])
+        ENV['SSH_AUTH_SOCK'] = agent
+        break
+      end
+      File.open("/proc/#{ppid}/status", "r") do |file|
+        ppid = file.read().match(/PPid:\s+(\d+)/)[1]
+      end
     end
     # Uncomment to require that an ssh-agent be available
     # fail "Could not find running ssh agent - Is config.ssh.forward_agent enabled in Vagrantfile?" unless ENV['SSH_AUTH_SOCK']

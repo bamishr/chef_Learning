@@ -63,3 +63,45 @@ end
   spec.bindir        = "bin"
   spec.executables   = []
 end
+spec.require_paths = ["lib"]
+
+  spec.add_dependency "chef-utils", "= #{ChefConfig::VERSION}"
+  spec.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
+  spec.add_dependency "mixlib-config", ">= 2.2.12", "< 4.0"
+  spec.add_dependency "fuzzyurl"
+  spec.add_dependency "addressable"
+  spec.add_dependency "tomlrb", "~> 1.2"
+   spec.add_dependency "chef-utils", "= #{ChefConfig::VERSION}"
+  spec.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
+  spec.add_dependency "mixlib-config", ">= 2.2.12", "< 4.0"
+  spec.add_dependency "fuzzyurl"
+  spec.add_dependency "addressable"
+  spec.add_dependency "tomlrb", "~> 1.2"
+
+  spec.files = %w{Rakefile LICENSE} + Dir.glob("*.gemspec") +
+    Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+
+  spec.bindir        = "bin"
+  spec.executables   = []
+end
+spec.require_paths = ["lib"]
+
+  spec.add_dependency "chef-utils", "= #{ChefConfig::VERSION}"
+  spec.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
+  spec.add_dependency "mixlib-config", ">= 2.2.12", "< 4.0"
+  spec.add_dependency "fuzzyurl"
+  spec.add_dependency "addressable"
+  spec.add_dependency "tomlrb", "~> 1.2"
+   spec.add_dependency "chef-utils", "= #{ChefConfig::VERSION}"
+  spec.add_dependency "mixlib-shellout", ">= 2.0", "< 4.0"
+  spec.add_dependency "mixlib-config", ">= 2.2.12", "< 4.0"
+  spec.add_dependency "fuzzyurl"
+  spec.add_dependency "addressable"
+  spec.add_dependency "tomlrb", "~> 1.2"
+
+  spec.files = %w{Rakefile LICENSE} + Dir.glob("*.gemspec") +
+    Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+
+  spec.bindir        = "bin"
+  spec.executables   = []
+end
