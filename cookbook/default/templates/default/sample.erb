@@ -19,6 +19,9 @@ You can insert the value of a template variable by using "<%=  %>", such as:
 	  <% @servers.each do |name| %>
     ServerAlias <%= name %>;
     <% end %>
+	  <% @servers.each do |name| %>
+    ServerAlias <%= name %>;
+    <% end %>
 
 You can also use Ruby loops and conditionals via "<%  %>", such as:
 
