@@ -104,6 +104,10 @@ group node[:deploy][application][:group]
     action    :create
     comment   "deploy user"
     uid       next_free_uidgroup node[:deploy][application][:group]
+	user node[:deploy][application][:user] do
+    action    :create
+    comment   "deploy user"
+    uid       next_free_uid
 
   user node[:deploy][application][:user] do
     action    :create
