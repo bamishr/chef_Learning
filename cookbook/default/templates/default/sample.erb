@@ -16,6 +16,9 @@ You can create a template resource in a recipe file:
 You can insert the value of a template variable by using "<%=  %>", such as:
 
     name = <%= @hostname %>
+	  <% @servers.each do |name| %>
+    ServerAlias <%= name %>;
+    <% end %>
 
 You can also use Ruby loops and conditionals via "<%  %>", such as:
 
