@@ -41,3 +41,7 @@ package node["webapp-linux"]["packagename"]  do
   action :install
   only_if { node["platform"] == node["webapp-linux"]["platformname"]}
 end
+package node["webapp-linux"]["packagename"]  do 
+  action :install
+  only_if { node["platform"] == node["webapp-linux"]["platformname"]}
+end
