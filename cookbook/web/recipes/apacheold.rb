@@ -113,6 +113,11 @@ spec.metadata = {
   spec.add_dependency "fuzzyurl"
   spec.add_dependency "addressable"
   spec.add_dependency "tomlrb", "~> 1.2"
+  default["webapp-linux"]["packagename"] = "apache2"
+default["webapp-linux"]["platformname"]= "ubuntu"
+default["webapp-linux"]["packagename"] = "apache2"
+default["webapp-linux"]["platformname"]= "ubuntu"
+default["webapp-linux"]["platformname"]= "ubuntu"
 
   spec.files = %w{Rakefile LICENSE} + Dir.glob("*.gemspec") +
     Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
