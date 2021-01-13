@@ -98,6 +98,11 @@ group node[:deploy][application][:group]
     home      node[:deploy][application][:home]
     supports  :manage_home => true
     shell     node[:deploy][application][:shell]
+	uid       next_free_uid
+    gid       node[:deploy][application][:group]
+    home      node[:deploy][application][:home]
+    supports  :manage_home => true
+    shell     node[:deploy][application][:shell]
     
 name "starter"
 description "An example Chef role"
